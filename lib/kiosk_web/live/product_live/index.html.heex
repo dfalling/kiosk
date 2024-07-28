@@ -1,0 +1,9 @@
+<.header>
+  Listing Products
+</.header>
+
+<div id="products-list" phx-update="stream">
+  <div :for={{dom_id, product} <- @streams.products} id={dom_id}>
+    <%= product.name %>
+  </div>
+</div>
