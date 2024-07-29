@@ -56,7 +56,7 @@ defmodule Kiosk.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
-      {:typed_ecto_schema, "~> 0.4.0"},
+      {:typed_struct, "~> 0.1.4"},
       {:mix_test_watch, "~> 1.2.0", only: :dev, runtime: false}
     ]
   end
