@@ -8,11 +8,19 @@ defmodule Kiosk.CartTotalTest do
 
     test "calculate/1 returns total for items with no offers" do
       cart_items = [
-        %Product{code: "JM1", name: "Jamon", price: 7.00},
-        %Product{code: "OV1", name: "Olives", price: 5.00}
+        %Product{
+          code: "GR1",
+          name: "Green Tea",
+          price: 3.11
+        },
+        %Product{
+          code: "SR1",
+          name: "Strawberries",
+          price: 5.00
+        }
       ]
 
-      assert CartTotal.calculate(cart_items) == 12.00
+      assert CartTotal.calculate(cart_items) == 8.11
     end
   end
 end
