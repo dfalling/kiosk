@@ -20,9 +20,9 @@ defmodule KioskWeb.ProductLiveTest do
     end
 
     test "shows cart total", %{conn: conn} do
-      {:ok, _index_live, html} = live(conn, ~p"/")
+      {:ok, view, _html} = live(conn, ~p"/")
 
-      assert html =~ "Total: €0.00"
+      view |> element("#cart-total") |> render() =~ "€0.00"
     end
 
     test "adds item to cart and updates total", %{conn: conn} do
@@ -36,7 +36,7 @@ defmodule KioskWeb.ProductLiveTest do
       |> element("#cart-items > :first-child")
       |> render() =~ "Coffee"
 
-      render(view) =~ "Total: €11.23"
+      view |> element("#cart-total") |> render() =~ "€11.23"
     end
   end
 end
