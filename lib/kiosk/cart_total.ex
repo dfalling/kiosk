@@ -50,6 +50,12 @@ defmodule Kiosk.CartTotal do
     4.5 * quantity
   end
 
+  # 2/3 price for three or more coffees
+  def calculate_item_total(%Product{code: "CF1", price: price}, quantity)
+      when quantity > 2 do
+    price * quantity * 2 / 3
+  end
+
   # no offers
   def calculate_item_total(%Product{price: price}, quantity), do: price * quantity
 end

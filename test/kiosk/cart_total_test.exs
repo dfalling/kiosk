@@ -55,7 +55,7 @@ defmodule Kiosk.CartTotalTest do
       assert CartTotal.calculate(cart_items) == 10.00
     end
 
-    test "calculate/1 returns fixed 4.50 deal price for three strawberries" do
+    test "calculate/1 returns fixed 4.50 deal price for three or more strawberries" do
       cart_items = [
         @strawberries,
         @strawberries,
@@ -63,6 +63,25 @@ defmodule Kiosk.CartTotalTest do
       ]
 
       assert CartTotal.calculate(cart_items) == 13.50
+    end
+
+    test "calculate/1 returns full price for less than 3 coffee" do
+      cart_items = [
+        @coffee,
+        @coffee
+      ]
+
+      assert CartTotal.calculate(cart_items) == 22.46
+    end
+
+    test "calculate/1 returns 2/3 price for three or more coffee" do
+      cart_items = [
+        @coffee,
+        @coffee,
+        @coffee
+      ]
+
+      assert CartTotal.calculate(cart_items) == 33.69 * 2 / 3
     end
   end
 end
