@@ -25,8 +25,8 @@ defmodule KioskWeb.ProductLive.Index do
   def handle_event("add_to_cart", %{"code" => code}, socket) do
     product = Inventory.get_product!(code)
 
-    cart_total = socket.assigns.cart_total + product.price
     cart_items = [product | socket.assigns.cart_items]
+    cart_total = Kiosk.Inventory.cart_total(cart_items)
 
     {:noreply, assign(socket, cart_total: cart_total, cart_items: cart_items)}
   end

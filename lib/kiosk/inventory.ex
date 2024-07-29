@@ -59,4 +59,15 @@ defmodule Kiosk.Inventory do
       product -> product
     end
   end
+
+  @doc """
+    Gets the total price of the cart items.
+
+    ## Examples
+
+      iex> calculate([%Product{price: 3.11}, %Product{price: 5.00}])
+      8.11
+  """
+
+  def cart_total(cart_items), do: Kiosk.CartTotal.calculate(cart_items)
 end
