@@ -35,5 +35,15 @@ defmodule Kiosk.CartTotalTest do
 
       assert CartTotal.calculate(cart_items) == 22.46
     end
+
+    test "calculate/1 gives buy-one-get-one-free deal for green tea" do
+      cart_items = [
+        @green_tea,
+        @green_tea,
+        @green_tea
+      ]
+
+      assert CartTotal.calculate(cart_items) == 6.22
+    end
   end
 end
