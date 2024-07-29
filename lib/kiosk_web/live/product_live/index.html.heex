@@ -9,6 +9,8 @@
     class="border border-gray-300 rounded p-6 flex flex-col gap-4"
   >
     <div class="text-4xl "><%= product.name %></div>
-    <div class="flex text-2xl justify-center"><%= product.price %></div>
+    <div class="flex text-2xl justify-center">
+      <.currency_display value={product.price} />
+    </div>
   </div>
 </div>

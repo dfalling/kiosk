@@ -13,7 +13,7 @@ defmodule KioskWeb.ProductLiveTest do
 
       Enum.each(products, fn product ->
         assert html =~ product.name
-        assert html =~ "#{product.price}"
+        assert html =~ "€#{product.price}"
       end)
     end
   end

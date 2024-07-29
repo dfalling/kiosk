@@ -673,4 +673,33 @@ defmodule KioskWeb.CoreComponents do
   def translate_errors(errors, field) when is_list(errors) do
     for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
   end
+
+  @doc """
+
+  @doc \"""
+  Renders a price in the specified currency.
+
+  Note: the price is not converted to the currency.
+
+  ## Examples
+
+      <.currency_display value={12.20} currency={:eur} />
+  """
+
+  attr :value, :float, required: true
+  attr :currency, :atom, values: [:eur], default: :eur
+
+  def currency_display(assigns) do
+    assigns = assign(assigns, currency_text: currency_text(assigns.value, assigns.currency))
+
+    ~H"""
+    <%= @currency_text %>
+    """
+  end
+
+  defp currency_text(price, :eur) do
+    "€#{price}"
+  end
+
+  defp currency_text(price, _), do: "#{price}"
 end
