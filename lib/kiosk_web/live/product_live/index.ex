@@ -2,7 +2,6 @@ defmodule KioskWeb.ProductLive.Index do
   use KioskWeb, :live_view
 
   alias Kiosk.Inventory
-  alias Kiosk.Inventory.Product
 
   @impl true
   def mount(_params, _session, socket) do

@@ -13,7 +13,7 @@ defmodule KioskWeb.ProductLiveTest do
 
       Enum.each(products, fn product ->
         # convert float to two digit string
-        price = Float.to_string(product.price, decimals: 2)
+        price = :erlang.float_to_binary(product.price, decimals: 2)
         assert html =~ product.name
         assert html =~ "€#{price}"
       end)
@@ -26,7 +26,7 @@ defmodule KioskWeb.ProductLiveTest do
     end
 
     test "adds item to cart and updates total", %{conn: conn} do
-      {:ok, view, html} = live(conn, ~p"/")
+      {:ok, view, _html} = live(conn, ~p"/")
 
       view
       |> element("#product_CF1")

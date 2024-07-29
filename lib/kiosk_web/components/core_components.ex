@@ -698,7 +698,7 @@ defmodule KioskWeb.CoreComponents do
   end
 
   defp currency_text(price, :eur) do
-    price_string = Float.to_string(price, decimals: 2)
+    price_string = :erlang.float_to_binary(price, decimals: 2)
     "€#{price_string}"
   end
 
