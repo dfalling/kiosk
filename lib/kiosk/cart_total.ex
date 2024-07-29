@@ -44,6 +44,12 @@ defmodule Kiosk.CartTotal do
     discount_total + calculate_item_total(product, rem(quantity, 2))
   end
 
+  # fixed 4.50 deal price for three or more strawberries
+  def calculate_item_total(%Product{code: "SR1"}, quantity)
+      when quantity > 2 do
+    4.5 * quantity
+  end
+
   # no offers
   def calculate_item_total(%Product{price: price}, quantity), do: price * quantity
 end
