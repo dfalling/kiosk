@@ -18,5 +18,11 @@ defmodule KioskWeb.ProductLiveTest do
         assert html =~ "€#{price}"
       end)
     end
+
+    test "shows cart total", %{conn: conn} do
+      {:ok, _index_live, html} = live(conn, ~p"/")
+
+      assert html =~ "Total: €0.00"
+    end
   end
 end

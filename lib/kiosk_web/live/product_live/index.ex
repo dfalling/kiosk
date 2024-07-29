@@ -10,6 +10,7 @@ defmodule KioskWeb.ProductLive.Index do
       socket
       |> stream_configure(:products, dom_id: &"product_#{&1.code}")
       |> stream(:products, Inventory.list_products())
+      |> assign(:cart_total, 0.00)
 
     {:ok, socket}
   end

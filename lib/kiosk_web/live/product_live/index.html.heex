@@ -2,15 +2,25 @@
   Listing Products
 </.header>
 
-<div id="products-list" phx-update="stream" class="flex gap-4">
-  <div
-    :for={{dom_id, product} <- @streams.products}
-    id={dom_id}
-    class="border border-gray-300 rounded p-6 flex flex-col gap-4"
-  >
-    <div class="text-4xl "><%= product.name %></div>
-    <div class="flex text-2xl justify-center">
-      <.currency_display value={product.price} />
+<div class="flex gap-8">
+  <div id="products-list" phx-update="stream" class="flex gap-4">
+    <div
+      :for={{dom_id, product} <- @streams.products}
+      id={dom_id}
+      class="border border-gray-300 rounded p-6 flex flex-col gap-4"
+    >
+      <div class="text-4xl "><%= product.name %></div>
+      <div class="flex text-2xl justify-center">
+        <.currency_display value={product.price} />
+      </div>
     </div>
+  </div>
+
+  <div class="p-6 bg-gray-200 text-4xl text-nowrap grid grid-template-rows-[min-content,1fr,min-content]">
+    <div>Cart</div>
+
+    <div />
+
+    <div>Total: <.currency_display value={@cart_total} /></div>
   </div>
 </div>
