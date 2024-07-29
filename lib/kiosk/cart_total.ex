@@ -38,24 +38,24 @@ defmodule Kiosk.CartTotal do
   end
 
   # buy-one-get-one-free deal for green tea
-  def calculate_item_total(%Product{code: "GR1", price: price} = product, quantity)
-      when quantity >= 2 do
+  defp calculate_item_total(%Product{code: "GR1", price: price} = product, quantity)
+       when quantity >= 2 do
     discount_total = price * div(quantity, 2)
     discount_total + calculate_item_total(product, rem(quantity, 2))
   end
 
   # fixed 4.50 deal price for three or more strawberries
-  def calculate_item_total(%Product{code: "SR1"}, quantity)
-      when quantity > 2 do
+  defp calculate_item_total(%Product{code: "SR1"}, quantity)
+       when quantity > 2 do
     4.5 * quantity
   end
 
   # 2/3 price for three or more coffees
-  def calculate_item_total(%Product{code: "CF1", price: price}, quantity)
-      when quantity > 2 do
+  defp calculate_item_total(%Product{code: "CF1", price: price}, quantity)
+       when quantity > 2 do
     price * quantity * 2 / 3
   end
 
   # no offers
-  def calculate_item_total(%Product{price: price}, quantity), do: price * quantity
+  defp calculate_item_total(%Product{price: price}, quantity), do: price * quantity
 end
