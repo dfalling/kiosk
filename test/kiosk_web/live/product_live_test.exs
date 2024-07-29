@@ -4,7 +4,7 @@ defmodule KioskWeb.ProductLiveTest do
   import Phoenix.LiveViewTest
 
   describe "Index" do
-    test "lists all products", %{conn: conn} do
+    test "lists all products with their prices", %{conn: conn} do
       {:ok, _index_live, html} = live(conn, ~p"/")
 
       assert html =~ "Listing Products"
@@ -13,6 +13,7 @@ defmodule KioskWeb.ProductLiveTest do
 
       Enum.each(products, fn product ->
         assert html =~ product.name
+        assert html =~ "#{product.price}"
       end)
     end
   end
