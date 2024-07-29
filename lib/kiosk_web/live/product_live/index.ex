@@ -11,6 +11,7 @@ defmodule KioskWeb.ProductLive.Index do
       |> stream_configure(:products, dom_id: &"product_#{&1.code}")
       |> stream(:products, Inventory.list_products())
       |> assign(:cart_total, 0.00)
+      |> assign(:cart_items, [])
 
     {:ok, socket}
   end
@@ -18,6 +19,16 @@ defmodule KioskWeb.ProductLive.Index do
   @impl true
   def handle_params(params, _url, socket) do
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
+  end
+
+  @impl true
+  def handle_event("add_to_cart", %{"code" => code}, socket) do
+    product = Inventory.get_product!(code)
+
+    cart_total = socket.assigns.cart_total + product.price
+    cart_items = [product | socket.assigns.cart_items]
+
+    {:noreply, assign(socket, cart_total: cart_total, cart_items: cart_items)}
   end
 
   defp apply_action(socket, :index, _params) do
