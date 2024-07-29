@@ -22,5 +22,22 @@ defmodule Kiosk.CartTotalTest do
 
       assert CartTotal.calculate(cart_items) == 8.11
     end
+
+    test "calculate/1 returns total for duplicate items with no offers" do
+      cart_items = [
+        %Product{
+          code: "CF1",
+          name: "Coffee",
+          price: 11.23
+        },
+        %Product{
+          code: "CF1",
+          name: "Coffee",
+          price: 11.23
+        }
+      ]
+
+      assert CartTotal.calculate(cart_items) == 22.46
+    end
   end
 end
