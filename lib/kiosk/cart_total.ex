@@ -39,7 +39,7 @@ defmodule Kiosk.CartTotal do
 
   # buy-one-get-one-free deal for green tea
   def calculate_item_total(%Product{code: "GR1", price: price} = product, quantity)
-      when quantity > 2 do
+      when quantity >= 2 do
     discount_total = price * div(quantity, 2)
     discount_total + calculate_item_total(product, rem(quantity, 2))
   end
