@@ -10,6 +10,14 @@ defmodule Kiosk.CartTotal do
     end
   end
 
+  @doc """
+  Calculate the total price of a cart of products.
+
+  ## Examples
+
+      iex> CartTotal.calculate([%Product{code: "GR1", price: 3.11}, %Product{code: "SR1", price: 5.00}])
+      8.11
+  """
   def calculate(cart_products) do
     item_quantities = group_items(cart_products)
 
